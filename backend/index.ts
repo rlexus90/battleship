@@ -1,2 +1,3 @@
+import { App } from './src/app';
 
-console.log('Run')
+new App().serverRun();
