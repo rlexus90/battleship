@@ -2,18 +2,17 @@ import { WebSocketServer } from 'ws';
 import { EnumTypes, IServerMessage } from '../types/iServerMsg';
 import { DB } from '../dataBase/dataBase';
 import { IPlayer } from '../types/player';
-import { sendMessage } from './sendMessage';
+import { sendMessage } from '../helpers/sendMessage';
 import { print } from '../helpers/print';
+import { updateWiners } from './updateWiners';
 
 export const registration = (
   msg: IServerMessage,
   ws: WebSocket,
-  _wss: WebSocketServer,
+  wss: WebSocketServer,
 ) => {
-  const players = DB.players;
   const data = JSON.parse(msg.data) as IncomingData;
-
-  players.filter((player) => player.name === data.name);
+  const players = DB.players.filter((player) => player.name === data.name);
 
   if (players.length === 0) {
     const player: IPlayer = {
@@ -29,6 +28,7 @@ export const registration = (
     DB.players.push(player);
     sendMessage(ws, EnumTypes.reg, answer);
     print('New Player', 'green');
+    updateWiners(msg, ws, wss);
     return;
   }
 
@@ -47,8 +47,9 @@ export const registration = (
           errorText: 'Wrong pasword or Player already exist',
         };
   sendMessage(ws, EnumTypes.reg, answer);
+  updateWiners(msg, ws, wss);
 
-  answer.error 
+  answer.error
     ? print('Player is`nt login', 'red')
     : print('Player successful login ', 'green');
 };
