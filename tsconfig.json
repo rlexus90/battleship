@@ -8,4 +8,5 @@
 		"esModuleInterop": true,
   },
   "files": ["backend/index.ts"],
+	"include": ["backend/**/*.ts"]
 }

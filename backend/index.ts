@@ -1,3 +1,7 @@
 import { App } from './src/app';
+import { downApp } from './src/helpers/shotDownApp';
 
-new App().serverRun();
+const app = new App();
+app.serverRun();
+
+downApp(app);

@@ -12,6 +12,8 @@
   },
   "plugins": ["@typescript-eslint"],
 	"rules": {
-		"eslint-plugin-import/extensions":0
+		"eslint-plugin-import/extensions":0,
+		// "no-unused-vars": "off",
+		"@typescript-eslint/no-unused-vars": 0
 	}
 }
