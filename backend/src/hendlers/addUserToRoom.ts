@@ -19,6 +19,7 @@ export const addUserToRoom = (
   if (!curentPlayer || !curentRoom || curentRoom.roomUsers.length !== 1) return;
   if (curentRoom.roomUsers[0].index === curentPlayer.index)
     return print('User try add himself in his room', 'red');
+
   curentRoom.roomUsers.push(curentPlayer);
   DB.updateRoom(curentRoom);
   updateRoom(msg, ws, wss);

@@ -35,17 +35,21 @@ export const createGame = (
   DB.pushGame(game);
   print(`New game id=${data.idGame} created`, 'green');
 
-  wss.clients.forEach((client: WebSocketId) => {
-    const [curentPlayer] = game.players.filter(
-      (player) => player.id === client.id,
-    );
-    if (!curentPlayer) return;
-    const data: OutputData = {
-      idGame: room.roomId,
-      idPlayer: curentPlayer.index,
-    };
-    sendMessage(client, EnumTypes.create_game, data);
-  });
+  try {
+    wss.clients.forEach((client: WebSocketId) => {
+      const [curentPlayer] = game.players.filter(
+        (player) => player.id === client.id,
+      );
+      if (!curentPlayer) return;
+      const data: OutputData = {
+        idGame: room.roomId,
+        idPlayer: curentPlayer.index,
+      };
+      sendMessage(client, EnumTypes.create_game, data);
+    });
+  } catch {
+    print('Some went wrong', 'red');
+  }
 };
 
 type OutputData = {

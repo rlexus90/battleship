@@ -3,6 +3,7 @@ import { EnumTypes, IServerMessage } from '../types/iServerMsg';
 import { DB } from '../dataBase/dataBase';
 import { sendMessage } from '../helpers/sendMessage';
 import { WebSocketId } from '../types/webSocket';
+import { print } from '../helpers/print';
 
 export const updateWiners = (
   _msg: IServerMessage,
@@ -14,9 +15,13 @@ export const updateWiners = (
     return { name: player.name, wins: player.wins || 0 };
   });
 
-  wss.clients.forEach((client) =>
-    sendMessage(client as WebSocketId, EnumTypes.update_winners, data),
-  );
+  try {
+    wss.clients.forEach((client) =>
+      sendMessage(client as WebSocketId, EnumTypes.update_winners, data),
+    );
+  } catch {
+    print('Some went wrong', 'red');
+  }
 };
 
 interface Winer {

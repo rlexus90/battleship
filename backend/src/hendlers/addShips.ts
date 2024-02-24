@@ -26,20 +26,24 @@ export const addShips = (
       'yellow',
     );
 
-  wss.clients.forEach((client: WebSocketId) => {
-    const [curentPlayer] = playersWithShips.filter(
-      (player) => player.id === client.id,
-    );
-    if (!curentPlayer) return;
+  try {
+    wss.clients.forEach((client: WebSocketId) => {
+      const [curentPlayer] = playersWithShips.filter(
+        (player) => player.id === client.id,
+      );
+      if (!curentPlayer) return;
 
-    const data: OutputData = {
-      ships: curentPlayer.ships,
-      currentPlayerIndex: curentPlayer.index,
-    };
-    sendMessage(client, EnumTypes.start_game, data);
-  });
+      const data: OutputData = {
+        ships: curentPlayer.ships,
+        currentPlayerIndex: curentPlayer.index,
+      };
+      sendMessage(client, EnumTypes.start_game, data);
+    });
 
-  print(`The game id=${currentGame.idGame} has started`, 'green');
+    print(`The game id=${currentGame.idGame} has started`, 'green');
+  } catch {
+    print('Some went wrong', 'red');
+  }
 };
 
 export type AddShipsData = {

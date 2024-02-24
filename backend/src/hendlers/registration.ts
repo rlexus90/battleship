@@ -52,6 +52,7 @@ export const registration = (
           error: true,
           errorText: 'Wrong pasword or Player already exist',
         };
+
   sendMessage(ws, EnumTypes.reg, answer);
   updateWiners(msg, ws, wss);
   updateRoom(msg, ws, wss);
