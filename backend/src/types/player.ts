@@ -5,4 +5,5 @@ export interface IPlayer {
   errorText?: string;
   password: string;
   wins?: number;
+  id: string;
 }

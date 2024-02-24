@@ -1,4 +1,6 @@
-export const sendMessage = (ws: WebSocket, type: string, data: unknown) => {
+import { WebSocketId } from '../types/webSocket';
+
+export const sendMessage = (ws: WebSocketId, type: string, data: unknown) => {
   ws.send(
     JSON.stringify({
       type,

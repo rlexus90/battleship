@@ -5,10 +5,12 @@ import { IPlayer } from '../types/player';
 import { sendMessage } from '../helpers/sendMessage';
 import { print } from '../helpers/print';
 import { updateWiners } from './updateWiners';
+import { WebSocketId } from '../types/webSocket';
+import { updateRoom } from './updateRoom';
 
 export const registration = (
   msg: IServerMessage,
-  ws: WebSocket,
+  ws: WebSocketId,
   wss: WebSocketServer,
 ) => {
   const data = JSON.parse(msg.data) as IncomingData;
@@ -19,20 +21,24 @@ export const registration = (
       name: data.name,
       password: data.password,
       index: Date.now(),
+      id: ws.id,
     };
     const answer: OutputData = {
       name: player.name,
       index: player.index,
       error: false,
     };
-    DB.players.push(player);
+    DB.pushPlayer(player);
     sendMessage(ws, EnumTypes.reg, answer);
     print('New Player', 'green');
     updateWiners(msg, ws, wss);
+    updateRoom(msg, ws, wss);
     return;
   }
 
-  const player = players[0];
+  const player = { ...players[0], id: ws.id };
+  DB.updatePlayer(player);
+
   const answer: OutputData =
     player.password === data.password
       ? {
@@ -48,6 +54,7 @@ export const registration = (
         };
   sendMessage(ws, EnumTypes.reg, answer);
   updateWiners(msg, ws, wss);
+  updateRoom(msg, ws, wss);
 
   answer.error
     ? print('Player is`nt login', 'red')
