@@ -4,7 +4,7 @@ import { WebSocketId } from '../types/webSocket';
 import { DB } from '../dataBase/dataBase';
 import { IRoom } from '../types/room';
 import { print } from '../helpers/print';
-import { updateRoom } from './updateRoom';
+import { updateRoom } from '../helpers/updateRoom';
 
 export const createRoom = (
   msg: IServerMessage,

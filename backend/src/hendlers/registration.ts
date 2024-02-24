@@ -4,9 +4,9 @@ import { DB } from '../dataBase/dataBase';
 import { IPlayer } from '../types/player';
 import { sendMessage } from '../helpers/sendMessage';
 import { print } from '../helpers/print';
-import { updateWiners } from './updateWiners';
+import { updateWiners } from '../helpers/updateWiners';
 import { WebSocketId } from '../types/webSocket';
-import { updateRoom } from './updateRoom';
+import { updateRoom } from '../helpers/updateRoom';
 
 export const registration = (
   msg: IServerMessage,

@@ -1,9 +1,9 @@
 import { WebSocketServer } from 'ws';
 import { EnumTypes, IServerMessage } from '../types/iServerMsg';
 import { DB } from '../dataBase/dataBase';
-import { sendMessage } from '../helpers/sendMessage';
+import { sendMessage } from './sendMessage';
 import { WebSocketId } from '../types/webSocket';
-import { print } from '../helpers/print';
+import { print } from './print';
 
 export const updateWiners = (
   _msg: IServerMessage,

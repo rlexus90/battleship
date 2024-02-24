@@ -2,8 +2,8 @@ import { WebSocketServer } from 'ws';
 import { IServerMessage } from '../types/iServerMsg';
 import { WebSocketId } from '../types/webSocket';
 import { DB } from '../dataBase/dataBase';
-import { updateRoom } from './updateRoom';
-import { createGame } from './createGame';
+import { updateRoom } from '../helpers/updateRoom';
+import { createGame } from '../helpers/createGame';
 import { print } from '../helpers/print';
 
 export const addUserToRoom = (

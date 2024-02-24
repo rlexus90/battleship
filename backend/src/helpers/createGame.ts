@@ -4,8 +4,8 @@ import { WebSocketId } from '../types/webSocket';
 import { DB } from '../dataBase/dataBase';
 import { IRoom } from '../types/room';
 import { IPlayer } from '../types/player';
-import { sendMessage } from '../helpers/sendMessage';
-import { print } from '../helpers/print';
+import { sendMessage } from './sendMessage';
+import { print } from './print';
 import { IGame, Player } from '../types/game';
 
 export const createGame = (
