@@ -1,5 +1,5 @@
 import { AddShipsData } from '../hendlers/addShips';
-import { IGame } from '../types/game';
+import { IGame } from '../types/IGame';
 import { IPlayer } from '../types/player';
 import { IRoom } from '../types/room';
 

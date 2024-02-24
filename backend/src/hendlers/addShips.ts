@@ -1,7 +1,7 @@
 import { WebSocketServer } from 'ws';
 import { EnumTypes, IServerMessage } from '../types/iServerMsg';
 import { WebSocketId } from '../types/webSocket';
-import { Ship } from '../types/game';
+import { Ship } from '../types/IGame';
 import { DB } from '../dataBase/dataBase';
 import { print } from '../helpers/print';
 import { sendMessage } from '../helpers/sendMessage';

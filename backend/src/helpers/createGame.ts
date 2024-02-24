@@ -6,7 +6,7 @@ import { IRoom } from '../types/room';
 import { IPlayer } from '../types/player';
 import { sendMessage } from './sendMessage';
 import { print } from './print';
-import { IGame, Player } from '../types/game';
+import { IGame, Player } from '../types/IGame';
 
 export const createGame = (
   room: IRoom,
@@ -41,6 +41,7 @@ export const createGame = (
         (player) => player.id === client.id,
       );
       if (!curentPlayer) return;
+
       const data: OutputData = {
         idGame: room.roomId,
         idPlayer: curentPlayer.index,

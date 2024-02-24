@@ -1,6 +1,7 @@
 export interface IGame {
   idGame: number;
   players: Player[];
+  gameSesion?: unknown;
 }
 
 export interface Player {
