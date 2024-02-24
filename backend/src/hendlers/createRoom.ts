@@ -7,9 +7,9 @@ import { print } from '../helpers/print';
 import { updateRoom } from './updateRoom';
 
 export const createRoom = (
-  _msg: IServerMessage,
+  msg: IServerMessage,
   ws: WebSocketId,
-  _wss: WebSocketServer,
+  wss: WebSocketServer,
 ) => {
   const curentPlayer = DB.players.filter((player) => player.id === ws.id);
   const room: IRoom = {
@@ -17,6 +17,6 @@ export const createRoom = (
     roomUsers: [{ name: curentPlayer[0].name, index: curentPlayer[0].index }],
   };
   DB.pushRoom(room);
-  updateRoom(_msg, ws, _wss);
+  updateRoom(msg, ws, wss);
   print('New room created', 'green');
 };

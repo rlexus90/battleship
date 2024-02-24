@@ -2,7 +2,6 @@ import { WebSocketServer } from 'ws';
 import { EnumTypes, IServerMessage } from '../types/iServerMsg';
 import { WebSocketId } from '../types/webSocket';
 import { DB } from '../dataBase/dataBase';
-import { IRoom } from '../types/room';
 import { sendMessage } from '../helpers/sendMessage';
 
 export const updateRoom = (
@@ -11,13 +10,9 @@ export const updateRoom = (
   wss: WebSocketServer,
 ) => {
   const rooms = DB.rooms;
-  const data = rooms.map<IRoom>((room) => {
-    if (room.roomUsers.length === 1) return room;
-  });
+  const data = rooms.filter((room) => room.roomUsers.length === 1);
 
-  wss.clients.forEach((client) =>
-    sendMessage(client as WebSocketId, EnumTypes.update_room, data),
+  wss.clients.forEach((client: WebSocketId) =>
+    sendMessage(client, EnumTypes.update_room, data),
   );
-
-  console.log(DB.rooms);
 };
