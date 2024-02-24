@@ -14,9 +14,10 @@ export const updateRoom = (
   const data = rooms.map<IRoom>((room) => {
     if (room.roomUsers.length === 1) return room;
   });
-  console.log(data);
 
   wss.clients.forEach((client) =>
     sendMessage(client as WebSocketId, EnumTypes.update_room, data),
   );
+
+  console.log(DB.rooms);
 };

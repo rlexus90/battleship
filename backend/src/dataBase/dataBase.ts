@@ -10,6 +10,11 @@ export class DB {
     this.players[index] = { ...this.players[index], ...player };
   }
 
+  static updateRoom(room: IRoom) {
+    const index = this.rooms.findIndex((el) => el.roomId === room.roomId);
+    this.rooms[index] = { ...this.rooms[index], ...room };
+  }
+
   static pushPlayer(palayer: IPlayer) {
     this.players.push(palayer);
   }
