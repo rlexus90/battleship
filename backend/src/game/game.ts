@@ -162,4 +162,23 @@ export class Game {
       }
     }
   }
+
+  public randomAttack(playerIndex: number): void {
+    const x = Math.floor(Math.random() * 10);
+    const y = Math.floor(Math.random() * 10);
+
+    const currentField =
+      playerIndex === this.playerTwo.index
+        ? this.battlefieldOne
+        : this.battlefieldTwo;
+
+    if (
+      currentField[y][x] === 'bang' ||
+      currentField[y][x] === 'kill' ||
+      currentField[y][x] === 'x'
+    )
+      return this.randomAttack(playerIndex);
+
+    this.shoot(playerIndex, x, y);
+  }
 }

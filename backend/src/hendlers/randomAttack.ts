@@ -1,16 +1,16 @@
 import { WebSocketServer } from 'ws';
 import { IServerMessage } from '../types/iServerMsg';
 import { WebSocketId } from '../types/webSocket';
+import { returnCurrentGame } from '../helpers/returnCurrent';
 
 export const randomAttack = (
   msg: IServerMessage,
   _ws: WebSocketId,
   _wss: WebSocketServer,
 ) => {
-  //TODO
   const data: IncomingData = JSON.parse(msg.data);
-  console.log('random attack');
-  console.log(data);
+  const currentGame = returnCurrentGame(data.gameId);
+  currentGame.gameSesion.randomAttack(data.indexPlayer);
 };
 
 type IncomingData = {
