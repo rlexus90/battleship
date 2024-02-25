@@ -1,6 +1,7 @@
 import { WebSocketServer } from 'ws';
 import { IServerMessage } from '../types/iServerMsg';
 import { WebSocketId } from '../types/webSocket';
+import { returnCurrentGame } from '../helpers/returnCurrent';
 
 export const attack = (
   msg: IServerMessage,
@@ -8,7 +9,9 @@ export const attack = (
   _wss: WebSocketServer,
 ) => {
   const data: IncomingData = JSON.parse(msg.data);
-  console.log(data);
+  const { gameId, indexPlayer, x, y } = data;
+  const currentGame = returnCurrentGame(gameId);
+  currentGame.gameSesion.shoot(indexPlayer, x, y);
 };
 
 type IncomingData = {

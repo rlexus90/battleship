@@ -18,3 +18,12 @@ export enum EnumTypes {
   'turn' = 'turn',
   'finish' = 'finish',
 }
+
+export type AnswerAttackData = {
+  position: {
+    x: number;
+    y: number;
+  };
+  currentPlayer: number;
+  status: 'miss' | 'killed' | 'shot';
+};
