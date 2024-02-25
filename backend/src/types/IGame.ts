@@ -1,4 +1,4 @@
-import { Game } from '../game/game';
+import { Game } from '../game/Game';
 
 export interface IGame {
   idGame: number;

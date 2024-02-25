@@ -2,7 +2,7 @@ import { WebSocketServer } from 'ws';
 import { IServerMessage } from '../types/iServerMsg';
 import { WebSocketId } from '../types/webSocket';
 
-export const attack = (
+export const randomAttack = (
   msg: IServerMessage,
   _ws: WebSocketId,
   _wss: WebSocketServer,
@@ -14,6 +14,4 @@ export const attack = (
 type IncomingData = {
   gameId: number;
   indexPlayer: number;
-  x: number;
-  y: number;
 };

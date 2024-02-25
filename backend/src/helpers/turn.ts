@@ -1,23 +1,24 @@
 import { WebSocketServer } from 'ws';
-import { IGame } from '../types/IGame';
+import { Player } from '../types/IGame';
 import { print } from './print';
 import { WebSocketId } from '../types/webSocket';
 import { sendMessage } from './sendMessage';
 import { EnumTypes } from '../types/iServerMsg';
 
-export const turn = (game: IGame, wss: WebSocketServer) => {
+export const turn = (
+  playerOne: Player,
+  playerTwo: Player,
+  current: number,
+  wss: WebSocketServer,
+) => {
+  const data: OutputData = {
+    currentPlayer: current,
+  };
+
   try {
     wss.clients.forEach((client: WebSocketId) => {
-      const [curentPlayer] = game.players.filter(
-        (player) => player.id === client.id,
-      ); ///???
-      if (!curentPlayer) return;
-
-      const data: OutputData = {
-        currentPlayer: curentPlayer.index,
-      };
-
-      sendMessage(client, EnumTypes.turn, data);
+      if (client.id === playerOne.id || client.id === playerTwo.id)
+        sendMessage(client, EnumTypes.turn, data);
     });
   } catch {
     print('Some went wrong', 'red');

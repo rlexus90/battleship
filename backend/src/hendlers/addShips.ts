@@ -5,7 +5,7 @@ import { Ship } from '../types/IGame';
 import { DB } from '../dataBase/dataBase';
 import { print } from '../helpers/print';
 import { sendMessage } from '../helpers/sendMessage';
-import { Game } from '../game/game';
+import { Game } from '../game/Game';
 import { returnCurrentGame } from '../helpers/returnCurrent';
 
 export const addShips = (
@@ -46,6 +46,7 @@ export const addShips = (
     });
 
     print(`The game id=${currentGame.idGame} has started`, 'green');
+    currentGame.gameSesion.turn();
   } catch {
     print('Some went wrong', 'red');
   }
