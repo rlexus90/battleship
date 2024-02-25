@@ -4,6 +4,7 @@ export const checkKilled = (field: Cell[][], x: number, y: number) => {
   const sheepSize = field[y][x];
   const x1 = x - 1 >= 0 ? x - 1 : 0;
   const x2 = x + 1 <= 9 ? x + 1 : 9;
+  field[y][x] = 'x';
   if (
     field[y][x1] === 'bang' ||
     field[y][x1] === sheepSize ||

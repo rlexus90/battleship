@@ -13,6 +13,7 @@ import { WebSocketId } from '../types/webSocket';
 import { openCells } from '../helpers/openCells';
 import { checkKilled } from '../helpers/checkKilled';
 import { deleteGame } from '../helpers/deleteGame';
+import { returnCurrentPlayer } from '../helpers/returnCurrent';
 
 export class Game {
   wss: WebSocketServer;
@@ -77,6 +78,7 @@ export class Game {
       print('Some went wrong', 'red');
     }
     deleteGame(this.gameIndex, player, this.wss);
+    print(`Game end! Winner - ${returnCurrentPlayer(player.id).name}`, 'green');
   }
 
   private checkShoot(x: number, y: number) {
