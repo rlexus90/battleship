@@ -28,7 +28,11 @@ export const addShips = (
       'yellow',
     );
 
-  currentGame.gameSesion = new Game(currentGame.players, wss);
+  currentGame.gameSesion = new Game(
+    currentGame.players,
+    currentGame.idGame,
+    wss,
+  );
   DB.updateGame(currentGame);
 
   try {

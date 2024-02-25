@@ -10,6 +10,7 @@ export interface Player {
   index: number;
   ships?: Ship[];
   id: string;
+  kills?: number;
 }
 
 export type Ship = {

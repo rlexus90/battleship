@@ -44,4 +44,14 @@ export class DB {
   static pushGame(game: IGame) {
     this.games.push(game);
   }
+
+  static deleteGame(id: number) {
+    const index = this.games.findIndex((el) => el.idGame === id);
+    this.games.splice(index, 1);
+  }
+
+  static deleteRoom(id: number) {
+    const index = this.rooms.findIndex((el) => el.roomId === id);
+    this.rooms.splice(index, 1);
+  }
 }

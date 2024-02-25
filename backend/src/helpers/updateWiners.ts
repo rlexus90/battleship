@@ -1,15 +1,11 @@
 import { WebSocketServer } from 'ws';
-import { EnumTypes, IServerMessage } from '../types/iServerMsg';
+import { EnumTypes } from '../types/iServerMsg';
 import { DB } from '../dataBase/dataBase';
 import { sendMessage } from './sendMessage';
 import { WebSocketId } from '../types/webSocket';
 import { print } from './print';
 
-export const updateWiners = (
-  _msg: IServerMessage,
-  _ws: WebSocketId,
-  wss: WebSocketServer,
-) => {
+export const updateWiners = (wss: WebSocketServer) => {
   const players = DB.players;
   const data = players
     .map<Winer>((player) => {

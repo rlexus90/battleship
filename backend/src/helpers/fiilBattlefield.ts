@@ -24,4 +24,4 @@ export const fillBattlefield = (ships: Ship[]) => {
   return battlefield;
 };
 
-export type Cell = number | 'x' | 'bang';
+export type Cell = number | 'x' | 'bang' | 'kill';

@@ -7,7 +7,9 @@ export const randomAttack = (
   _ws: WebSocketId,
   _wss: WebSocketServer,
 ) => {
+  //TODO
   const data: IncomingData = JSON.parse(msg.data);
+  console.log('random attack');
   console.log(data);
 };
 

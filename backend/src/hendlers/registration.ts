@@ -22,6 +22,7 @@ export const registration = (
       password: data.password,
       index: Date.now(),
       id: ws.id,
+      wins: 0,
     };
     const answer: OutputData = {
       name: player.name,
@@ -31,7 +32,7 @@ export const registration = (
     DB.pushPlayer(player);
     sendMessage(ws, EnumTypes.reg, answer);
     print('New Player', 'green');
-    updateWiners(msg, ws, wss);
+    updateWiners(wss);
     updateRoom(msg, ws, wss);
     return;
   }
@@ -54,7 +55,7 @@ export const registration = (
         };
 
   sendMessage(ws, EnumTypes.reg, answer);
-  updateWiners(msg, ws, wss);
+  updateWiners(wss);
   updateRoom(msg, ws, wss);
 
   answer.error

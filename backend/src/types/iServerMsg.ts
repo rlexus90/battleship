@@ -27,3 +27,7 @@ export type AnswerAttackData = {
   currentPlayer: number;
   status: 'miss' | 'killed' | 'shot';
 };
+
+export type AnswerFinishData = {
+  winPlayer: number;
+};
