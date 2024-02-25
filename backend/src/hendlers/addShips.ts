@@ -5,6 +5,8 @@ import { Ship } from '../types/IGame';
 import { DB } from '../dataBase/dataBase';
 import { print } from '../helpers/print';
 import { sendMessage } from '../helpers/sendMessage';
+import { Game } from '../game/game';
+import { returnCurrentGame } from '../helpers/returnCurrent';
 
 export const addShips = (
   msg: IServerMessage,
@@ -16,7 +18,7 @@ export const addShips = (
 
   if (!ifShipsUpdated) return print(`Ships can't be added`, 'red');
 
-  const [currentGame] = DB.games.filter((game) => game.idGame === data.gameId);
+  const currentGame = returnCurrentGame(data.gameId);
 
   const playersWithShips = currentGame.players.filter((player) => player.ships);
 
@@ -25,6 +27,9 @@ export const addShips = (
       `Ships player_id=${data.indexPlayer} successful added`,
       'yellow',
     );
+
+  currentGame.gameSesion = new Game(currentGame.players, wss);
+  DB.updateGame(currentGame);
 
   try {
     wss.clients.forEach((client: WebSocketId) => {

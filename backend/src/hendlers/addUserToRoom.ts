@@ -5,6 +5,10 @@ import { DB } from '../dataBase/dataBase';
 import { updateRoom } from '../helpers/updateRoom';
 import { createGame } from '../helpers/createGame';
 import { print } from '../helpers/print';
+import {
+  returnCurrentPlayer,
+  returnCurrentRoom,
+} from '../helpers/returnCurrent';
 
 export const addUserToRoom = (
   msg: IServerMessage,
@@ -13,8 +17,8 @@ export const addUserToRoom = (
 ) => {
   const data = JSON.parse(msg.data) as IncomingData;
   const roomId = data.indexRoom;
-  const [curentRoom] = DB.rooms.filter((room) => room.roomId === roomId);
-  const [curentPlayer] = DB.players.filter((player) => player.id === ws.id);
+  const curentRoom = returnCurrentRoom(roomId);
+  const curentPlayer = returnCurrentPlayer(ws.id);
 
   if (!curentPlayer || !curentRoom || curentRoom.roomUsers.length !== 1) return;
   if (curentRoom.roomUsers[0].index === curentPlayer.index)

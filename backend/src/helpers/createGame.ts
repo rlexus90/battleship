@@ -7,6 +7,7 @@ import { IPlayer } from '../types/player';
 import { sendMessage } from './sendMessage';
 import { print } from './print';
 import { IGame, Player } from '../types/IGame';
+import { curentPlayerFromGame } from './returnCurrent';
 
 export const createGame = (
   room: IRoom,
@@ -37,9 +38,8 @@ export const createGame = (
 
   try {
     wss.clients.forEach((client: WebSocketId) => {
-      const [curentPlayer] = game.players.filter(
-        (player) => player.id === client.id,
-      );
+      const curentPlayer = curentPlayerFromGame(client.id, game);
+
       if (!curentPlayer) return;
 
       const data: OutputData = {

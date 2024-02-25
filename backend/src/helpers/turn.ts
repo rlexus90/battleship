@@ -10,7 +10,7 @@ export const turn = (game: IGame, wss: WebSocketServer) => {
     wss.clients.forEach((client: WebSocketId) => {
       const [curentPlayer] = game.players.filter(
         (player) => player.id === client.id,
-      );
+      ); ///???
       if (!curentPlayer) return;
 
       const data: OutputData = {

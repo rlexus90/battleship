@@ -1,7 +1,9 @@
+import { Game } from '../game/game';
+
 export interface IGame {
   idGame: number;
   players: Player[];
-  gameSesion?: unknown;
+  gameSesion?: Game;
 }
 
 export interface Player {

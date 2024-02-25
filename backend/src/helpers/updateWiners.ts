@@ -11,9 +11,12 @@ export const updateWiners = (
   wss: WebSocketServer,
 ) => {
   const players = DB.players;
-  const data = players.map<Winer>((player) => {
-    return { name: player.name, wins: player.wins || 0 };
-  });
+  const data = players
+    .map<Winer>((player) => {
+      return { name: player.name, wins: player.wins || 0 };
+    })
+    .filter((player) => player.wins !== 0)
+    .sort((a, b) => b.wins - a.wins);
 
   try {
     wss.clients.forEach((client) =>
