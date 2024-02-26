@@ -14,6 +14,7 @@ export interface Player {
 }
 
 export type Ship = {
+  isBot?: boolean;
   position: {
     x: number;
     y: number;

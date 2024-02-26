@@ -1,3 +1,4 @@
+import { Bot } from '../bot/bot';
 import { AddShipsData } from '../hendlers/addShips';
 import { IGame } from '../types/IGame';
 import { IPlayer } from '../types/player';
@@ -7,6 +8,7 @@ export class DB {
   static players: IPlayer[] = [];
   static rooms: IRoom[] = [];
   static games: IGame[] = [];
+  static bots: Bot[] = [];
 
   static updatePlayer(player: IPlayer) {
     const index = this.players.findIndex((el) => el.index === player.index);
@@ -44,10 +46,17 @@ export class DB {
   static pushGame(game: IGame) {
     this.games.push(game);
   }
+  static pushBot(bot: Bot) {
+    this.bots.push(bot);
+  }
 
   static deleteGame(id: number) {
     const index = this.games.findIndex((el) => el.idGame === id);
     this.games.splice(index, 1);
+  }
+  static deleteBot(id: number) {
+    const index = this.bots.findIndex((el) => el.botId === id);
+    this.bots.splice(index, 1);
   }
 
   static deleteRoom(id: number) {
