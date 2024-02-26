@@ -32,7 +32,7 @@ export class Bot {
 
   private handleMessage(msg: IServerMessage) {
     const { type, data } = msg;
-    console.log(type);
+
     switch (type) {
       case EnumTypes.reg:
         return this.startGame();

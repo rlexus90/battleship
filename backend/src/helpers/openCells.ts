@@ -135,6 +135,8 @@ export const openCells = (
 
     openNeighbor(x, y);
 
+    dataArr.sort((data) => (data.status === 'killed' ? 1 : -1));
+
     dataArr.forEach((data) => {
       wss.clients.forEach((client: WebSocketId) => {
         if (id.some((id) => client.id === id))
