@@ -10,7 +10,6 @@ export const playWithBot = (
   ws: WebSocketId,
   wss: ws.WebSocketServer,
 ) => {
-  print('Game with bot not support', 'yellow');
   try {
     DB.pushBot(new Bot(ws.id, wss));
   } catch {
