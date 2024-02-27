@@ -7,25 +7,18 @@
 2. `npm install`
 
 ## Usage
-**Development**
-
-`npm run start:dev`
-
-* App served @ `http://localhost:8181` with nodemon
-
-**Production**
 
 `npm run start`
 
-* App served @ `http://localhost:8181` without nodemon
+* App served @ `http://localhost:8181` (run frontend)
+
+
+`npm run server`
+
+* App served @ `http://localhost:3000` (start server with game)
 
 ---
 
-**All commands**
-
-Command | Description
---- | ---
-`npm run start:dev` | App served @ `http://localhost:8181` with nodemon
-`npm run start` | App served @ `http://localhost:8181` without nodemon
+**Note**: You must run both command in split terminal.
 
 **Note**: replace `npm` with `yarn` in `package.json` if you use yarn.
