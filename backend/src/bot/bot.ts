@@ -46,6 +46,7 @@ export class Bot {
   endGame() {
     this.ws.close();
     DB.deleteBot(this.botId);
+    print('Bot disconect', 'green');
   }
 
   startGame() {
