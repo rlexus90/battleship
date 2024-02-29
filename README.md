@@ -10,7 +10,8 @@
 
 `npm run start`
 
-* App served @ `http://localhost:8181` (run frontend)
+* App served @ `http://localhost:8181` (frontend)
+* App served @ `http://localhost:3000` (backend)
 
 
 `npm run server`
@@ -19,6 +20,5 @@
 
 ---
 
-**Note**: You must run both command in split terminal.
 
 **Note**: replace `npm` with `yarn` in `package.json` if you use yarn.

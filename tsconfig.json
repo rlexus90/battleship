@@ -7,6 +7,6 @@
     "allowJs": true,
 		"esModuleInterop": true,
   },
-  "files": ["backend/index.ts"],
-	"include": ["backend/**/*.ts"]
+  "files": ["index.ts"],
+	"include": ["**/*.ts"]
 }
