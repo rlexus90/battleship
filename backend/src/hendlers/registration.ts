@@ -14,10 +14,10 @@ export const registration = (
   wss: WebSocketServer,
 ) => {
   const data = JSON.parse(msg.data) as IncomingData;
-  const players = DB.players.filter((player) => player.name === data.name);
+  const [player] = DB.players.filter((player) => player.name === data.name);
 
-  if (players.length === 0) {
-    const player: IPlayer = {
+  if (!player) {
+    const newPlayer: IPlayer = {
       name: data.name,
       password: data.password,
       index: Date.now(),
@@ -25,8 +25,8 @@ export const registration = (
       wins: 0,
     };
     const answer: OutputData = {
-      name: player.name,
-      index: player.index,
+      name: newPlayer.name,
+      index: newPlayer.index,
       error: false,
     };
     DB.pushPlayer(player);
@@ -37,19 +37,19 @@ export const registration = (
     return;
   }
 
-  const player = { ...players[0], id: ws.id };
-  DB.updatePlayer(player);
+  const updatePlayer = { ...player, id: ws.id };
+  DB.updatePlayer(updatePlayer);
 
   const answer: OutputData =
-    player.password === data.password
+    updatePlayer.password === data.password
       ? {
-          name: player.name,
-          index: player.index,
+          name: updatePlayer.name,
+          index: updatePlayer.index,
           error: false,
         }
       : {
-          name: player.name,
-          index: player.index,
+          name: updatePlayer.name,
+          index: updatePlayer.index,
           error: true,
           errorText: 'Wrong pasword or Player already exist',
         };

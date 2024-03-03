@@ -1,7 +1,7 @@
 import { Ship } from '../types/IGame';
 
 export const fillBattlefield = (ships: Ship[]) => {
-  if (ships[0].isBot) return randomField();
+  if (ships.some((ship) => ship.isBot)) return randomField();
 
   const battlefield = emptyField();
 

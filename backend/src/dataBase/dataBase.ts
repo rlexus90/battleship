@@ -12,16 +12,19 @@ export class DB {
 
   static updatePlayer(player: IPlayer) {
     const index = this.players.findIndex((el) => el.index === player.index);
+    if (index === -1) return;
     this.players[index] = { ...this.players[index], ...player };
   }
 
   static updateRoom(room: IRoom) {
     const index = this.rooms.findIndex((el) => el.roomId === room.roomId);
+    if (index === -1) return;
     this.rooms[index] = { ...this.rooms[index], ...room };
   }
 
   static updateGame(game: IGame) {
     const index = this.games.findIndex((el) => el.idGame === game.idGame);
+    if (index === -1) return;
     this.games[index] = { ...this.games[index], ...game };
   }
 
