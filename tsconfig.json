@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "module": "NodeNext",
+    "target": "ES6",
+    "allowJs": true,
+		"esModuleInterop": true,
+  },
+  "files": ["index.ts"],
+	"include": ["**/*.ts"]
+}
